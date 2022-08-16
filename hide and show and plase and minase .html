@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .button {
+            position: relative;
+            background-color: #04AA6D;
+            border: none;
+            font-size: 28px;
+            color: #FFFFFF;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .button:after {
+            content: "";
+            background: #90EE90;
+            display: block;
+            position: absolute;
+            padding-top: 300%;
+            padding-left: 350%;
+            margin-left: -20px !important;
+            margin-top: -120%;
+            opacity: 0;
+            transition: all 0.8s
+        }
+
+        .button:active:after {
+            padding: 0;
+            margin: 0;
+            opacity: 1;
+            transition: 0s
+        }
+
+        .button1 {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover span {
+  padding-right: 25px;
+}
+
+.button1:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.btn {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #3e8e41;
+  color: white;
+}
+.button2 {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button2:hover {background-color: #3e8e41}
+
+.button2:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.btn1 {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.btn1:hover {opacity: 0.6}
+    </style>
+    <title>jquery Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#BtnShow").attr("disabled", true);
+
+            $("#BtnHide").click(function () {
+                if (confirm("Are you sure..??")) {
+                    $("#MyDiv").hide(2000);
+                    $(this).attr("disabled", true);
+                    $("#BtnShow").attr("disabled", false);
+                    $("#BtnToggle").text("Show");
+                }
+            });
+            $("#BtnShow").click(function () {
+                if (confirm("Are you sure..??")) {
+                    $("#MyDiv").show(1000);
+                    $(this).attr("disabled", true);
+                    $("#BtnHide").attr("disabled", false);
+                    $("#BtnToggle").text("Hide");
+                }
+            });
+            $("#BtnToggle").click(function () {
+                if (confirm("Are you sure..??")) {
+                    $("#MyDiv").toggle(1000);
+                    ($(this).text() == "Hide")
+                        ? ($(this).text("Show"), $("#BtnHide").attr("disabled", true), $("#BtnShow").attr("disabled", false))
+                        : ($(this).text("Hide"), $("#BtnHide").attr("disabled", false), $("#BtnShow").attr("disabled", true));
+                }
+            });
+            $("#BtnPlus").click(function () {
+                var MDHM = parseInt($("#MyDiv").css("height"));
+                if (MDHM <= 300) {
+                    MDHM += 10;
+                    $("#MyDiv").css("height", MDHM);
+                    $("#MyDiv").css("width", MDHM);
+                }
+                else {
+                    alert("More 300px is not possible.");
+                }
+            });
+            $("#BtnMinus").click(function () {
+                var MDHM = parseInt($("#MyDiv").css("height"));
+                if (MDHM >= 20) {
+                    MDHM -= 10;
+                    $("#MyDiv").css("height", MDHM);
+                    $("#MyDiv").css("width", MDHM);
+
+                }
+                else {
+                    alert("Less 20px is not possible.");
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="MyDiv" style="height: 300px; width: 300px; background-image:url('a6a988814936af1d537d5b1bcf2ae6f3.jpg')">
+    </div>
+    <hr />
+    <button class="button" id="BtnHide"><span>hide</span> </button>&nbsp;&nbsp;
+    <button class="button1" id="BtnShow"><span>show</span></button>
+    <hr />
+    <button class="btn" id="BtnToggle">Hide</button>
+    <hr />
+    <button class="button2"  id="BtnPlus" style="font-size:xx-large"><b>+</b></button>&nbsp;&nbsp;
+    <button class="btn1" id="BtnMinus" style="font-size:xx-large ;"><b>-</b></button>
+    <hr />
+
+</body>
+
+</html>
